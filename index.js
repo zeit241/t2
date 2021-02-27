@@ -6,10 +6,6 @@ const session = require("express-session");
 const MongoClient = require("mongodb").MongoClient;
 const MongoDBStore = require("connect-mongodb-session")(session);
 const path = require("path");
-const e = require("express");
-const {
-  count
-} = require("console");
 
 //enable express
 const app = express();
