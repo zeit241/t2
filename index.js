@@ -281,10 +281,4 @@ mongoClient.connect(function (err, client) {
 });
 
 //Starting server
-// app.listen(process.env.PORT, function() {
-//   console.log("Сервер запущен: " + process.env.PORT);
-// });
-
-app.listen(5000 || process.env.PORT, function () {
-  console.log("Сервер запущен");
-});
+app.listen( process.env.PORT, function() {  console.log("Сервер запущен: " + process.env.PORT); });
