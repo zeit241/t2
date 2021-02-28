@@ -130,10 +130,7 @@ mongoClient.connect(function (err, client) {
 
     function CreateFile(data) {
       let count = data.length
-      console.log('Создает файл')
-      console.log(data)
       //let name = 
-      //   let name = '122'
       let string = 'аккаунт',
         ending = '',
         MainDate = new Date(),
@@ -186,30 +183,24 @@ mongoClient.connect(function (err, client) {
     }
 
     function ClearFolder(content) {
-      console.log('Чистит')
       fs.readdir(__dirname + "/public/download", function (err, data) {
         if (err) {
           //ERROR
         } else {
           if (data.length !== 0) {
-            console.log(1)
             data.forEach(e => {
               fs.unlink(__dirname + "/public/download/" + e, (err) => {
                 if (err) throw err;
-                console.log('path/file.txt was deleted');
               })
             })
-            console.log(123)
             CreateFile(content)
           } else {
-            console.log(132)
             CreateFile(content)
           }
         }
       })
     }
     if (req.body) {
-      console.log(req.body)
       ClearFolder(GetData(req.body.data))
     }
   })
@@ -218,7 +209,6 @@ mongoClient.connect(function (err, client) {
       if (err) {
         //ERROR
       } else {
-        console.log(data)
         res.download(`${__dirname}/public/download/${data[0]}`)
       }
     })
@@ -264,21 +254,21 @@ mongoClient.connect(function (err, client) {
 
   //connecting JS files
   app.use("/Auth.admin.js", function (req, res) {
-    res.sendFile(__dirname + "/public/js/" + "Auth.admin.js");
-  });
+    res.sendFile(__dirname + "/public/js/" + "Auth.admin.js")
+  })
   app.use("/profile.scripts.js", function (req, res) {
-    res.sendFile(__dirname + "/public/js/" + "profile.scripts.js");
-  });
+    res.sendFile(__dirname + "/public/js/" + "profile.scripts.js")
+  })
   app.use("/fakes.scripts.js", function (req, res) {
-    res.sendFile(__dirname + "/public/js/" + "fakes.scripts.js");
-  });
+    res.sendFile(__dirname + "/public/js/" + "fakes.scripts.js")
+  })
   app.use("/panel.scripts.js", function (req, res) {
-    res.sendFile(__dirname + "/public/js/" + "panel.scripts.js");
-  });
+    res.sendFile(__dirname + "/public/js/" + "panel.scripts.js")
+  })
   app.use("/main.scripts.js", function (req, res) {
-    res.sendFile(__dirname + "/public/js/" + "main.scripts.js");
-  });
-});
+    res.sendFile(__dirname + "/public/js/" + "main.scripts.js")
+  })
+})
 
 //Starting server
-app.listen( process.env.PORT, function() {  console.log("Сервер запущен: " + process.env.PORT); });
+app.listen( process.env.PORT || 5000, function() {  console.log("Сервер запущен: " + process.env.PORT) })
