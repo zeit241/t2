@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // })
   
     console.log(ids)
-    $.post("http://localhost:5000/download",  { data: ids},  function(data) {
+    $.post("http://" + location.host + "/download",  { data: ids},  function(data) {
       location.replace('/download')
     })
   })
