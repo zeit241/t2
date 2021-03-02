@@ -123,14 +123,8 @@ mongoClient.connect(function (err, client) {
       return ids
     }
 
-    // function FileName(count) {
-    //   console.log('Имя')
-
-    // }
-
-    function CreateFile(data) {
-      let count = data.length
-      //let name = 
+    function FileName(count) {
+     // let count = data.length
       let string = 'аккаунт',
         ending = '',
         MainDate = new Date(),
@@ -140,7 +134,7 @@ mongoClient.connect(function (err, client) {
         hour = MainDate.getHours(),
         minute = MainDate.getMinutes(),
         second = MainDate.getSeconds(),
-        FileContent = ''
+        GMT = 3
       let e = count.toString().substr(-1)
       if (e == 1) {} else if (e >= 2 && e <= 4) {
         ending = 'а'
@@ -148,35 +142,34 @@ mongoClient.connect(function (err, client) {
         ending = 'ов'
       }
    
-      if (month.length == 1) {
+      if (month.toString().length == 1) {
         month = '0' + month
       }
-      if (date.length == 1) {
+      if (date.toString().length == 1) {
         date = '0' + date
       }
-      if (hour.length == 1) {
+      if (hour.toString().length == 1) {
         hour = '0' + hour
       }
-      if (minute.length == 1) {
+      if (minute.toString().length == 1) {
         minute = '0' + minute
       }
-      if (second.length == 1) {
+      if (second.toString().length == 1) {
         second = '0' + second
       }
-      let dateFormat = `[${hour+3}꞉${minute}꞉${second} ‖ ${date}.${month}.${year}]`
-      let name = `${dateFormat} ${count} ${string+ending}`
+      let dateFormat = `[${hour+GMT}꞉${minute}꞉${second} ‖ ${date}.${month}.${year}]`
+      return `${dateFormat} ${count} ${string+ending}`
+    }
+
+    function CreateFile(data) {
+      let name =  FileName(data.length)
       data.forEach(e=>{
-        if(data.indexOf(e)!== data.length){
-          FileContent += e +'\n'
-        }else{
-          FileContent += e 
-        }
+        FileContent += e +'\n'
       })
       fs.open(`${__dirname}/public/download/${name}.txt`, "w", err, data => {
         if (err) {
           throw err;
         } else {
-          console.log(data)
           fs.writeFile(`${__dirname}/public/download/${name}.txt`, FileContent, err => {
             if (err) {
               throw err;
