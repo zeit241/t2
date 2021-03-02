@@ -139,8 +139,8 @@ mongoClient.connect(function (err, client) {
         date = MainDate.getDate(),
         hour = MainDate.getHours(),
         minute = MainDate.getMinutes(),
-        second = MainDate.getSeconds()
-
+        second = MainDate.getSeconds(),
+        FileContent = ''
       let e = count.toString().substr(-1)
       if (e == 1) {} else if (e >= 2 && e <= 4) {
         ending = 'а'
@@ -165,6 +165,9 @@ mongoClient.connect(function (err, client) {
       }
       let dateFormat = `[${hour+3}꞉${minute}꞉${second} ‖ ${date}.${month}.${year}]`
       let name = `${dateFormat} ${count} ${string+ending}`
+      data.forEach(e=>{
+         FileContent += e +'\n'
+      })
       let FileContent = data.join('=')
       fs.open(`${__dirname}/public/download/${name}.txt`, "w", err, data => {
         if (err) {
