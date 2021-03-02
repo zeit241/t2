@@ -166,7 +166,11 @@ mongoClient.connect(function (err, client) {
       let dateFormat = `[${hour+3}꞉${minute}꞉${second} ‖ ${date}.${month}.${year}]`
       let name = `${dateFormat} ${count} ${string+ending}`
       data.forEach(e=>{
-         FileContent += e +'\n'
+        if(data.indexOf(e)!== data.length){
+          FileContent += e +'\n'
+        }else{
+          FileContent += e 
+        }
       })
       fs.open(`${__dirname}/public/download/${name}.txt`, "w", err, data => {
         if (err) {
