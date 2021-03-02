@@ -168,7 +168,6 @@ mongoClient.connect(function (err, client) {
       data.forEach(e=>{
          FileContent += e +'\n'
       })
-      let FileContent = data.join('=')
       fs.open(`${__dirname}/public/download/${name}.txt`, "w", err, data => {
         if (err) {
           throw err;
