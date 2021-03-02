@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
   /*====================================================================
     ==============================| ДРУГОЕ |==============================
     ======================================================================*/
-  function accauntsCounter(){
+  function accauntsCounter() {
     let count = document.querySelectorAll('.acc-item').length
     document.getElementById('accaunts-counter').innerText = `Показано ${count} из ${count} записей`
   }
-  document.getElementById('totop').addEventListener('click', function(){
+  document.getElementById('totop').addEventListener('click', function () {
     document.getElementById('topAnchor').scrollIntoView({
       behavior: 'smooth',
       block: 'start'
@@ -19,11 +19,24 @@ document.addEventListener("DOMContentLoaded", function () {
   $("img, a").on("dragstart", function (event) {
     event.preventDefault()
   })
+  if(document.body.clientHeight > window.screen.availHeight){
+    document.getElementById('col').style.height = document.getElementById('col').clientHeight + 56 + 'px'
+  }
+let widthCol = document.body.clientWidth
+  $( window ).resize(function() {
+    if(widthCol!==document.body.clientWidth){
+      document.querySelectorAll('.list-item').forEach(e=>{
+        console.log((document.body.clientWidth - widthCol))
+      //  e.style.width = e.clientWidth - 
+      })
+      widthCol = document.body.clientWidth
+    }
+  });
 
   window.onscroll = function toTopCheck() {
-    if( window.pageYOffset >=  200){
+    if (window.pageYOffset >= 200) {
       document.getElementById('totop').style.display = 'block'
-    }else{
+    } else {
       document.getElementById('totop').style.display = 'none'
     }
     // if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 300) {
@@ -191,10 +204,10 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     if (array.length == counter) {
       document.getElementById('main-checkbox').checked = true
-    }else if(array.length > counter){
+    } else if (array.length > counter) {
       document.getElementById('main-checkbox').checked = false
     }
-    
+
   }
   // Скрывает все чекбоксы, если не выделено ни одного
   function checkboxcount() {
@@ -279,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById('download-btn').addEventListener('click', function () {
     let ids = []
     document.querySelectorAll('.acc-checkbox').forEach(e => {
-      if (e.checked == true) ids.push(e.parentNode.parentNode.children[3].children[0].textContent.substr(7))
+      if (e.checked == true) ids.push(e.parentNode.parentNode.children[3].children[0].textContent.substr(7) + ':' + e.parentNode.parentNode.children[3].children[2].textContent.substr(10))
     })
     $.post("https://" + location.host + "/download", {
       data: ids

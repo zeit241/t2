@@ -147,7 +147,7 @@ mongoClient.connect(function (err, client) {
       } else {
         ending = 'ов'
       }
-
+   
       if (month.length == 1) {
         month = '0' + month
       }
@@ -163,15 +163,15 @@ mongoClient.connect(function (err, client) {
       if (second.length == 1) {
         second = '0' + second
       }
-      let dateFormat = `[${hour}꞉${minute}꞉${second} ‖ ${date}.${month}.${year}]`
+      let dateFormat = `[${hour+3}꞉${minute}꞉${second} ‖ ${date}.${month}.${year}]`
       let name = `${dateFormat} ${count} ${string+ending}`
-      let data2 = data.join('=')
+      let FileContent = data.join('=')
       fs.open(`${__dirname}/public/download/${name}.txt`, "w", err, data => {
         if (err) {
           throw err;
         } else {
           console.log(data)
-          fs.writeFile(`${__dirname}/public/download/${name}.txt`, data2, err => {
+          fs.writeFile(`${__dirname}/public/download/${name}.txt`, FileContent, err => {
             if (err) {
               throw err;
             } else {

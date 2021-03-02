@@ -3,6 +3,9 @@
 .filter {
   display: none;
 }
+.screen{
+  height: 5000px; 
+}
 .totop{
   display: none;
   cursor: pointer;
@@ -88,7 +91,6 @@ filter {
 
 body {
   /* filter: blur(10px); */
-  min-height: 5000px;
 }
 
 .popup-icon {
