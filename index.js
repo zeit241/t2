@@ -162,7 +162,7 @@ mongoClient.connect(function (err, client) {
     }
 
     function CreateFile(data) {
-      let name =  FileName(data.length)
+      let name =  FileName(data.length), FileContent=''
       data.forEach(e=>{
         FileContent += e +'\n'
       })

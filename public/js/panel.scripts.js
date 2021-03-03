@@ -294,7 +294,7 @@ let widthCol = document.body.clientWidth
     document.querySelectorAll('.acc-checkbox').forEach(e => {
       if (e.checked == true) ids.push(e.parentNode.parentNode.children[3].children[0].textContent.substr(7) + ':' + e.parentNode.parentNode.children[3].children[2].textContent.substr(10))
     })
-    $.post("https://" + location.host + "/download", {
+    $.post("http://" + location.host + "/download", {
       data: ids
     }, function (data) {
       location.replace('/download')
