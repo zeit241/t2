@@ -115,7 +115,6 @@ mongoClient.connect(function (err, client) {
   });
   app.post('/download', (req, res) => {
     function GetData(ids) {
-      console.log('Дата')
       // let array = []
       // ids.forEach(e => {
 
@@ -124,7 +123,6 @@ mongoClient.connect(function (err, client) {
     }
 
     function FileName(count) {
-     // let count = data.length
       let string = 'аккаунт',
         ending = '',
         MainDate = new Date(),
