@@ -5,10 +5,15 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoClient = require("mongodb").MongoClient;
 const MongoDBStore = require("connect-mongodb-session")(session);
-const path = require("path");
-
 //enable express
 const app = express();
+// const http = require('http');
+// const server = http.createServer(app);
+// const {
+//   Server
+// } = require("socket.io");
+// const io = new Server(server);
+const path = require("path");
 
 //app.set('trust proxy', 1);
 app.use(express.static(path.join(__dirname, "public")));
@@ -56,6 +61,18 @@ mongoClient.connect(function (err, client) {
     res.header("Access-Control-Allow-Headers", "Content-Type");
     next();
   });
+  // let i = 0
+  // app.post('/x', function (req, res) {
+  //   i++
+  //   res.send('lol')
+  //   io.emit('notification', {
+  //     icon: './media/bug.svg',
+  //     text: req.body.text,
+  //     date: +new Date,
+  //     counter: i
+  //   });
+  // })
+
 
   //GET(POST) data from fakes
   // app.post("/AddNewAccount", bodyParser, function (request, response) {
@@ -75,19 +92,20 @@ mongoClient.connect(function (err, client) {
     if (request.session.user) {
       next();
     } else {
+      response.redirect("/login");
       next();
     }
   };
   let TokenCheckLogin = (request, response, next) => {
     if (request.session.user) {
       response.redirect("/profile");
-      response.end();
     } else {
       next();
     }
   };
 
   //Log in function and update token
+ 
   app.post("/auth", function (request, response, next) {
     if (request.body) {
       client
@@ -104,10 +122,8 @@ mongoClient.connect(function (err, client) {
                 name: request.body.login
               }
               response.redirect("/profile")
-              response.end()
             } else {
-              response.redirect("/login?wrongData=true")
-              response.end()
+              response.send('502')
             }
           }
         );
@@ -139,7 +155,7 @@ mongoClient.connect(function (err, client) {
       } else {
         ending = 'ов'
       }
-   
+
       if (month.toString().length == 1) {
         month = '0' + month
       }
@@ -160,9 +176,10 @@ mongoClient.connect(function (err, client) {
     }
 
     function CreateFile(data) {
-      let name =  FileName(data.length), FileContent=''
-      data.forEach(e=>{
-        FileContent += e +'\n'
+      let name = FileName(data.length),
+        FileContent = ''
+      data.forEach(e => {
+        FileContent += e + '\n'
       })
       fs.open(`${__dirname}/public/download/${name}.txt`, "w", err, data => {
         if (err) {
@@ -209,15 +226,15 @@ mongoClient.connect(function (err, client) {
         res.download(`${__dirname}/public/download/${data[0]}`)
       }
     })
-
   })
   //connecting HTML files
 
-  app.get("/logout", function (request, response) {
+
+  app.get("/logout", TokenCheck, function (request, response) {
     request.session.destroy();
     response.redirect("/login");
   });
-  app.post("/getData", function (request, response) {
+  app.post("/getData", TokenCheck, function (request, response) {
     response.send({
       login: request.session.user.name
     });
@@ -237,7 +254,7 @@ mongoClient.connect(function (err, client) {
   app.get("/fakes", TokenCheck, function (request, response) {
     response.sendFile(__dirname + "/public/pages/" + "fakes.html");
   });
-  app.get("/profile", function (request, response) {
+  app.get("/profile", TokenCheck, function (request, response) {
     response.sendFile(__dirname + "/public/pages/" + "profile.html");
   });
   app.get("/", TokenCheck, function (request, response) {
@@ -266,6 +283,12 @@ mongoClient.connect(function (err, client) {
     res.sendFile(__dirname + "/public/js/" + "main.scripts.js")
   })
 })
+//Socket io integration 
+// io.on('connection', (socket) => {
+//   console.log('a user connected');
+// });
 
 //Starting server
-app.listen( process.env.PORT || 5000, function() {  console.log("Сервер запущен: " + process.env.PORT) })
+app.listen(process.env.PORT || 5000, function () {
+  console.log("Сервер запущен: " + process.env.PORT)
+})
