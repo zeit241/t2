@@ -2,12 +2,17 @@ document.getElementById("preloader").visible = true
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("preloader").visible = false
 
-  /*====================================================================
+  /*======================================================================
     ==============================| ДРУГОЕ |==============================
     ======================================================================*/
   function accauntsCounter() {
+    /*
+    TODO:
+    - Получить инфромацию о колличестве аккаунтов 
+
+    */
     let count = document.querySelectorAll('.acc-item').length
-    document.getElementById('accaunts-counter').innerText = `Показано ${count} из ${count} записей`
+    document.getElementById('accaunts-counter').innerText = `Показано ${count} из 30 записей`
   }
   document.getElementById('totop').addEventListener('click', function () {
     document.getElementById('topAnchor').scrollIntoView({
@@ -19,19 +24,21 @@ document.addEventListener("DOMContentLoaded", function () {
   $("img, a").on("dragstart", function (event) {
     event.preventDefault()
   })
-  if(document.body.clientHeight > window.screen.availHeight){
+  if (document.body.clientHeight > window.screen.availHeight) {
     document.getElementById('col').style.height = document.getElementById('col').clientHeight + 56 + 'px'
   }
-let widthCol = document.body.clientWidth
-  $( window ).resize(function() {
-    if(widthCol!==document.body.clientWidth){
-      document.querySelectorAll('.list-item').forEach(e=>{
-        console.log((document.body.clientWidth - widthCol))
-      //  e.style.width = e.clientWidth - 
-      })
-      widthCol = document.body.clientWidth
-    }
-  });
+
+
+  // let widthCol = document.body.clientWidth
+  // $( window ).resize(function() {
+  //   if(widthCol!==document.body.clientWidth){
+  //     document.querySelectorAll('.list-item').forEach(e=>{
+  //       console.log((document.body.clientWidth - widthCol))
+  //     //  e.style.width = e.clientWidth - 
+  //     })
+  //     widthCol = document.body.clientWidth
+  //   }
+  // })
 
   window.onscroll = function toTopCheck() {
     if (window.pageYOffset >= 200) {
@@ -55,8 +62,129 @@ let widthCol = document.body.clientWidth
     let array = localStorage.getItem('Data')
     array.push(id)
   }
+
+  function CreateName() {
+    let name
+    let str = ["Полина", "Марта", "Ева", "Варвара", "Алексей", "Анна", "Кира", "Екатерина", "Сергей", "Вероника", "Михаил", "Маргарита", "Александр", "Алиса", "Фёдор", "Виктория", "Александра", "Артём", "Илья", "Николай", "Ксения", "Анастасия", "Тимур", "Елизавета", "Ангелина", "Дмитрий", "Платон", "Артемий", "Ясмина", "Давид", "Лев", "Аиша", "Тимофей", "Надежда", "Мария", "Альфия", "Милана", "Юлия", "Владислав", "Антон", "Ирина", "Матвей", "Алисия", "Пелагея", "Амина", "Валерия", "Нина", "Макар", "Марк", "Виктор", "София", "Игорь", "Евгений", "Кирилл", "Владимир", "Эмилия", "Константин", "Елена", "Амелия", "Али", "Степан", "Мирон", "Родион", "Леонид", "Захар", "Олег", "Пётр", "Диана", "Борис", "Мирослава", "Арина", "Никита", "Григорий", "Ярослав", "Адам", "Даниил", "Наталья", "Ульяна", "Максим", "Аврора", "Николь", "Дарья", "Татьяна", "Евгения", "Амира", "Тигран", "Софья", "Иван", "Андрей", "Арсений", "Георгий", "Мирослав", "Мира", "Мия", "Арсен", "Денис", "Глеб", "Павел", "Марьям", "Вера"]
+    let str2 = ["Молчанова", "Анисимова", "Жуков", "Волошин", "Розанов", "Трофимов", "Козлова", "Кузнецов", "Гуляев", "Наумова", "Тихомирова", "Демидов", "Иванова", "Анисимов", "Румянцев", "Кравцова", "Ситникова", "Фомичева", "Ильина", "Егоров", "Шестакова", "Александров", "Субботин", "Щербакова", "Прокофьев", "Шапошникова", "Дружинин", "Меркулова", "Куликова", "Грекова", "Иванов", "Романов", "Петрова", "Власова", "Морозова", "Павлова", "Егорова", "Максимова", "Дорофеева", "Терентьев", "Прокофьева", "Федотова", "Самсонова", "Коновалов", "Рыжов", "Зайцев", "Левин", "Логинов", "Соколова", "Смирнов", "Зайцева", "Федотова", "Новикова", "Гусева", "Белоусов", "Гаврилова", "Агеева", "Назарова", "Боброва", "Симонова", "Еремина", "Свешникова", "Родионова", "Соколова", "Тарасов", "Григорьева", "Воронков", "Шувалова", "Романова", "Чижова", "Медведев", "Безрукова", "Кузнецов", "Зорина", "Никулин", "Шестакова", "Ульянов", "Овчинникова", "Кириллова", "Щербакова", "Фирсова", "Власов", "Федосеев", "Новиков", "Денисов", "Осипова", "Нефедов", "Самсонова", "Корчагина", "Тихонова", "Поздняков", "Васильева", "Ильина", "Рябов", "Захаров", "Михайлов", "Киселева", "Гусев", "Гончарова"]
+    name = str[Math.floor(Math.random() * (str.length + 1 - 0) + 0)] + ' ' + str2[Math.floor(Math.random() * (str2.length + 1 - 0) + 0)]
+    return name
+  }
+
+  function getPhoto() {
+    return fetch('https://picsum.photos/200').then(e => photo = e.url)
+  }
   // Создание карточек с аккаунтами
-  function createCards() {}
+  async function createCards() {
+    for (let i = 0; i < 30; i++) {
+      let login = '7',
+        password = '',
+        token = '',
+        id = 'id',
+        friends = '',
+        followers,
+        idMB = i,
+        checkDate = '26.02.2021',
+        AddDate = '26.02.2021',
+        valid,
+        fa2,color,color2
+      for (let h = 0; h <= 6; h++) {
+        id += Math.floor(Math.random() * (10 - 1) + 1)
+      }
+      password += Math.random().toString(36).substr(2)
+      for (let x = 0; x < 10; x++) {
+        token += Math.random().toString(36).substr(2)
+      }
+      for (let j = 0; j <= 9; j++) {
+        login += Math.floor(Math.random() * (10 - 1) + 1)
+      }
+      valid = Math.floor(Math.random() * (2 - 0) + 0)
+      fa2 = Math.floor(Math.random() * (2 - 0) + 0)
+      token = token.substr(0, 85)
+      friends = Math.floor(Math.random() * (10000 - 0) + 0)
+      followers = Math.floor(Math.random() * (10000 - 0) + 0)
+
+      if (fa2 == 1) {
+        fa2 = 'Да'
+        color2 = '#dc3545'
+      } else {
+        fa2 = 'Нет'
+        color2 = '#28a745'
+      }
+      if (valid == 1) {
+        valid = 'Да'
+        color = '#28a745'
+      } else {
+        valid = 'Нет'
+        color = '#dc3545'
+      }
+
+      let string = `
+      <tr class ="acc-item">
+        <th scope="row">
+          <div  class="acc-item-checkbox">
+            <input class="form-check-input acc-checkbox" type="checkbox" id="${idMB}">
+          </div>
+        </th>
+        <td>
+          <div class="acc-item-avatar">
+            <img src="${await getPhoto()}" alt="Аватар" />
+          </div>
+        </td>
+        <td>
+        <div class="acc-item-name">
+            <span id="user_name">${CreateName()}</span><br />
+            <span id="user_id">ID: ${id}</span>
+          </div>
+        </td>
+        <td>
+        <div class="acc-item-data">
+            <span id="user_login">Логин: ${login}</span><br />
+            <span id="user_password">Пароль: ${password}</span>
+          </div>
+        </td> 
+        <td>
+        <div class="acc-item-token">
+            <input type="text" disabled value="${token}">
+          </div>
+        </td> 
+        <td>
+        <div class="acc-item-friends">
+            <span id="user_friends">${friends}</span>
+          </div>
+        </td> 
+        <td>
+        <div class="acc-item-followers">
+        <span id="user_followers">${followers}</span>
+      </div>
+        </td>
+        <td>
+        <div class="acc-item-valid">
+            <span id="user_valid">Валидный: <span style="color: ${color}">${valid}</span></span><br />
+            <span id="user_2fa">2FA: <span style="color: ${color2}">${fa2}</span></span>
+          </div>
+        </td>
+        <td>
+        <div class="acc-item-validdate">
+            <span id="user_validdate">Проверен: ${checkDate}</span><br />
+            <span id="user_addtime">Добавлен: ${AddDate}</span>
+          </div>
+        </td>
+        <td>
+        <div class="acc-item-more">
+        <div class="acc-item-more-btn" id="acc-item-more-btn">
+          <img src="./media/three-dots.svg" class="more-btn">
+        </div>
+        </div>
+        </td>
+        </tr>
+      `
+      $('#accs').append(string)
+      accauntsCounter()
+    }
+
+  }
+ createCards()
   // Создает уведомления
   function CreateToast(type, title, text) {
     let id = Math.floor(Math.random() * (99999 - 1) + 1).toString(36),
@@ -104,13 +232,11 @@ let widthCol = document.body.clientWidth
     // Добавление и показ уведомления
     $("#popup").append(str)
     $(`#${id}`).toast('show')
-
     // Таймер на уведомлении
     let intervalId = setInterval(() => {
       timer++
       document.getElementById(`${id}-timer`).children[0].textContent = timer + ' сек. назад'
     }, 1000)
-
     // Функции для закрытия уведомления
     document.getElementById(`${id}-close`).addEventListener('click', removeListener)
 
@@ -144,42 +270,37 @@ let widthCol = document.body.clientWidth
   // Копирование логина и пароля
   Array.from(document.querySelectorAll('#user_password')).concat(Array.from(document.querySelectorAll('#user_login'))).forEach(e => {
     e.addEventListener("dblclick", function (event) {
-      obj = {
+      Copy(event.target.parentElement.children[0].textContent.substr(7) + ":" + event.target.parentElement.children[2].textContent.substr(10), {
         header: 'Успешно',
         body: 'Данные успешно скопированны!'
-      }
-      Copy(event.target.parentElement.children[0].textContent.substr(7) + ":" + event.target.parentElement.children[2].textContent.substr(10), obj)
+      })
     })
   })
   // Копирование имени и фамилии
   document.querySelectorAll('#user_name').forEach(e => {
     e.addEventListener("dblclick", function (event) {
-      obj = {
+      Copy(event.target.textContent, {
         header: 'Успешно',
         body: 'Имя успешно скопированно!'
-      }
-      Copy(event.target.textContent, obj)
+      })
     })
   })
   // Копирование ID
   document.querySelectorAll('#user_id').forEach(e => {
     e.addEventListener("dblclick", function (event) {
-      obj = {
+      Copy(`https://vk.com/${event.target.textContent.substr(3).trim()}/`, {
         header: 'Успешно',
         body: 'ID успешно скопирован!'
-      }
-      Copy(`https://vk.com/${event.target.textContent.substr(3).trim()}/`, obj)
+      })
     })
   })
   // Копирование токена
   document.querySelectorAll('.acc-item-token').forEach(e => {
     e.addEventListener("dblclick", function (event) {
-      obj = {
+      Copy(event.target.value.trim(), {
         header: 'Успешно',
         body: 'Токен успешно скопирован!'
-      }
-      Copy(event.target.value.trim(), obj)
-
+      })
       //Убирает выделение input
       if (document.selection && document.selection.empty) {
         document.selection.empty()
@@ -192,9 +313,7 @@ let widthCol = document.body.clientWidth
   /*=============================================================
   ==============================| ЧЕКБОКСЫ |=====================
   ===============================================================*/
-  function checkButton() {
 
-  }
   // Выделяет главный чекбокс, если выделены все
   function allcheckboxes() {
     let array = document.querySelectorAll('.acc-checkbox'),
@@ -207,7 +326,6 @@ let widthCol = document.body.clientWidth
     } else if (array.length > counter) {
       document.getElementById('main-checkbox').checked = false
     }
-
   }
   // Скрывает все чекбоксы, если не выделено ни одного
   function checkboxcount() {
@@ -235,7 +353,6 @@ let widthCol = document.body.clientWidth
         e.children[0].checked = true
       })
     } else {
-
       document.getElementById('multicopy-btn').disabled = true
       Array.from(document.getElementsByClassName('acc-item-checkbox')).forEach(e => {
         e.style.display = 'none'
@@ -254,15 +371,14 @@ let widthCol = document.body.clientWidth
   })
   document.querySelectorAll('.acc-item').forEach(e => {
     e.addEventListener('dblclick', function (event) {
-
       if (event.target.classList.contains('acc-item')) {
-        if (event.target.children[0].children[0].checked == true) { //УЖЕ был ВЫДЕЛЕН
+        if (event.target.children[0].children[0].checked == true) {
           document.getElementById('main-checkbox').checked == false
           document.getElementById('multicopy-btn').disabled = true
           event.target.children[0].children[0].checked = false
           checkboxcount()
           allcheckboxes()
-        } else { //ЕЩЕ нет
+        } else {
           document.getElementById('multicopy-btn').disabled = false
           document.querySelectorAll('.acc-item-checkbox').forEach(el => {
             el.style.display = 'block'
@@ -292,9 +408,10 @@ let widthCol = document.body.clientWidth
   document.getElementById('download-btn').addEventListener('click', function () {
     let ids = []
     document.querySelectorAll('.acc-checkbox').forEach(e => {
-      if (e.checked == true) ids.push(e.parentNode.parentNode.children[3].children[0].textContent.substr(7) + ':' + e.parentNode.parentNode.children[3].children[2].textContent.substr(10))
+      if (e.checked == true)
+        ids.push(e.parentNode.parentNode.children[3].children[0].textContent.substr(7) + ':' + e.parentNode.parentNode.children[3].children[2].textContent.substr(10))
     })
-    $.post("http://" + location.host + "/download", {
+    $.post("https://" + location.host + "/download", {
       data: ids
     }, function (data) {
       location.replace('/download')
@@ -302,19 +419,15 @@ let widthCol = document.body.clientWidth
   })
   //Копирование данных
   document.getElementById('multicopy-btn').addEventListener('click', function () {
-    let ids = [],
-      str = ''
+    let str = ''
     document.querySelectorAll('.acc-checkbox').forEach(e => {
-      if (e.checked == true) ids.push(e.parentNode.parentNode.children[3].children[0].textContent.substr(7) + ':' + e.parentNode.parentNode.children[3].children[2].textContent.substr(10))
+      if (e.checked == true)
+        str += e.parentNode.parentNode.children[3].children[0].textContent.substr(7) + ':' + e.parentNode.parentNode.children[3].children[2].textContent.substr(10) + '\n'
     })
-    ids.forEach(e => {
-      str += e + '\n'
-    })
-    obj = {
+    Copy(str, {
       header: 'Успешно',
       body: 'Данные успешно скопированы!'
-    }
-    Copy(str, obj)
+    })
   })
-  accauntsCounter()
+
 })
