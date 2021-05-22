@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300&display=swap');
 * {
     color: #FFFFFF !important;
     text-decoration: none !important;
@@ -5,6 +6,7 @@
     padding: 0;
 }
 body {
+    font-family: 'Exo 2' !important;
     --color-grey: #1C1C24;
     --color-darkgrey: #131419;
 }
@@ -31,7 +33,6 @@ body {
 }
 
 .right-container {
-
     height: 100%;
     width: 100%;
 }
@@ -57,15 +58,28 @@ body {
 }
 
 .left-container__menu ul{
+    padding-left: 0px;
     list-style: none;
 }
+.left-container__menu{
+    margin-left: -15px ;
+}
 .menu-item {
+    display: flex;
+    align-items: center;
     width: 70%;
     margin: 0 auto;
 }
+.menu-item:not(:last-of-type) {
+   margin-bottom: 15px !important;
+}
 .menu-item > .menu-item__content{
+
     width: 100%;
     height: 100%;
-    padding: 7px;
+    padding: 7px !important;
     border: 1px solid #FFFFFF;
+}
+.menu-item__content >i{
+    margin-right: 5px ;
 }
