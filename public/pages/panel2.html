@@ -24,17 +24,46 @@
                 <div class="left-container__header_title"></div>
             </div>
             <div class="left-container__menu">
+                <div class="left-container__mini-profile">
+                    <div class="mini-profile__header">
+                        <div class="mini-profile__header-photo">
+                            <img src="/public/media/user.svg" alt="">
+                        </div>
+                        <div class="mini-profile__header-title">
+                            Name
+                        </div>
+                        <div class="mini-profile__header-text">
+                            За сегодня
+                        </div>
+                    </div>
+                    <div class="mini-profile__main">
+                        <div class="mini-profile__main-statistic">
+                            <div class="mini-profile__main-statistic-item">
+                                <h4>0</h4>
+                                <span>Посещений</span>
+                            </div>
+                            <div class="mini-profile__main-statistic-item">
+                                <h4>0</h4>
+                                <span>Вводов</span>
+                            </div>
+                            <div class="mini-profile__main-statistic-item">
+                                <h4>0</h4>
+                                <span>Валидных</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <ul>
                     <li class="menu-item">
-                        <a href="#">
+                        <a href="/profile">
                             <div class="menu-item__content">
                                 <i class="fi-rr-home"></i>
                                 <span>Главная</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="#">
+                    <li class="menu-item  menu-item__active">
+                        <a href="/panel">
                             <div class="menu-item__content">
                                 <i class="fi-rr-layout-fluid"></i>
                                 <span>Панель</span>
@@ -42,7 +71,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">
+                        <a href="/tools">
                             <div class="menu-item__content">
                                 <i class="fi-rr-magic-wand"></i>
                                 <span>Инструменты</span>
@@ -50,7 +79,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">
+                        <a href="/statistic">
                             <div class="menu-item__content">
                                 <i class="fi-rr-stats"></i>
                                 <span>Статистика</span>
@@ -58,22 +87,27 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">
+                        <a href="/settings">
                             <div class="menu-item__content">
                                 <i class="fi-rr-settings-sliders"></i>
                                 <span>Настройки</span>
                             </div>
                         </a>
                     </li>
-
                 </ul>
+                <div class="left-container__logout">
+                    <a href="/logout">
+                        <i class="fi-rr-sign-out"></i>
+                        Выйти
+                    </a>
+                    
+                </div>
             </div>
         </div>
         <div class="right-container">
             <div class="right-container__header header">
                 <div class="notification">
                     <div class="notification-icon">
-                        <!-- <i class="fi-rr-bell"></i> -->
                         <img src="/public/media/bell.svg" alt="" srcset="">
                         <div class="notification-count-block">
                         </div>
@@ -84,23 +118,22 @@
                             <a href="/settings#notifications"><img src="/public/media/gear.svg" alt=""></a>
                         </div>
                         <div class="notification-block-main">
-                                <div class="new-notification">
-                                    <div class="new-notification-icon">
-                                        <img src="/public/media/bug.svg" alt="">
-                                    </div>
-                                    <div class="new-notification-body">
-                                        <div class="new-notification-text">
-                                            <span>LOL</span>
-                                        </div><br>
-                                        <div class="new-notification-date">
-                                            <span>12.05.2021</span>
-                                        </div>
-                                    </div>
-                                    <div class="new-notification-close">
-                                        <i class="fi-rr-cross"></i>
-                                    </div>
-                                    
+                            <div class="new-notification">
+                                <div class="new-notification-icon">
+                                    <img src="/public/media/bug.svg" alt="">
                                 </div>
+                                <div class="new-notification-body">
+                                    <div class="new-notification-text">
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus quasi minima aliquid doloremque inventore? Veritatis blanditiis, perspiciatis debitis dolorum totam sapiente odio ipsam voluptatibus quisquam quas cupiditate reprehenderit, consequuntur nobis.
+                                    </div>
+                                    <div class="new-notification-date">
+                                        12.05.2021
+                                    </div>
+                                </div>
+                                <div class="new-notification-close">
+                                    <i class="fi-rr-cross"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
