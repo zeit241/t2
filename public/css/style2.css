@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
 }
-i,a, a:hover, p, span{
+i,a, a:hover, p, span, h1, h2,h3,h4{
     color: #fff;
 }
 
@@ -66,19 +66,17 @@ body {
 }
 
 .left-container__header_logo span {
-    font-size: 25px;
-    
+    font-size: 20px; 
 }
 
 .left-container__header_logo span:hover {
-    animation: logoAnimation 3s ease-out infinite;
+    animation: logoAnimation 10s ease-out infinite;
     text-shadow: 0 0 2px #4447E2;
 }
 
 .left-container__header_logo img {
-    width: 30px;
+    width: 25px;
     height: auto;
-
 }
 
 .left-container__menu ul {
@@ -118,16 +116,14 @@ body {
 
 .notification {
     margin-right: 15px;
-    padding-top: 5px;
 }
 
 .notification-icon {
     display: flex;
 }
 
-.notification-icon i {
-
-    font-size: 25px;
+.notification-icon img {
+    width: 20px;
 }
 
 .notification-count-block {
@@ -135,10 +131,9 @@ body {
     justify-content: center;
     background-color: brown;
     border-radius: 50%;
-    
-    width: 10px;
-    height: 10px;
-    transform: translate(-10px, +15px);
+    width: 8px;
+    height:8px;
+    transform: translate(-7.5px, 0px);
 }
 
 .right-container__header {
@@ -147,16 +142,16 @@ body {
     justify-content: flex-end;
 }
 @keyframes logoAnimation {
-    0%{
+    100%{
         color: #4447E2;
         transition-delay: 2s;
     }
-    100%{
+    0%{
         color: #fff;
     }
 }
 .notification-block{
-    display: none;
+    /* display: none; */
     right: 25px;
     background-color: var(--color-grey);
     z-index: 2;
@@ -164,12 +159,58 @@ body {
     width: 250px;
     height: 350px;
     top: 55px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.75);
 }
 .notification:hover .notification-block {
    display: block;
 }
 .notification-block-header{
     width: 100%;
-    height: 50px;
+    height: 30px;
     border-bottom: 1px solid #fff;
+}
+.notification-block-header{
+    padding: 5px !important;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.notification-block-header h3{
+    font-size: 15px;
+    flex-grow: 1;
+    margin-right: -5%;
+}
+.notification-block-header a{
+    z-index: 5;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.new-notification{
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgb(45, 45, 58) ;
+    border-bottom: 1px solid rgb(45, 45, 58) ;
+    padding: 8px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 100%;
+    min-height: 20px;
+    height: auto;
+    max-height: 80px;
+}
+.new-notification-text span{
+    font-size: 13px;
+}
+.new-notification-body{
+    flex-grow: 1;
+    font-size: 15px;
+}
+.new-notification-text {
+   
+}
+.new-notification-icon img{
+    width: 25px;
+    margin: 8px;
+}
+.new-notification-close i{
+   font-size: 8px;
 }
